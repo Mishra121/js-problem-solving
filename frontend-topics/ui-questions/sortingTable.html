@@ -1,0 +1,99 @@
+<html>
+<style>
+
+    table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #cccccc;
+        padding: 8px;
+    }
+
+    th {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    tr:hover {
+        color: white;
+        background-color: black;
+    }
+</style>
+
+<script>
+    let sortDirection = false;
+    let personData = [
+        { name: 'John', age: 31 },
+        { name: 'Peter', age: 30 },
+        { name: 'Vibhu', age: 19 },
+        { name: 'Alex', age: 22 },
+        { name: 'Ramu', age: 17 },
+    ];
+
+    window.onload = () => {
+        loadTableData(personData);
+    }
+    // loadTableData(personData);
+
+
+
+    function loadTableData(personData) {
+        const tableBody = document.getElementById('tableData');
+        let dataHtml = '';
+
+        for(let person of personData) {
+            dataHtml += `<tr><td>${person.name}</td><td>${person.age}</td></tr>`;
+        }
+
+        // console.log({dataHtml})
+        tableBody.innerHTML = dataHtml;
+    }
+
+    function sortColumn(columnName) {
+
+        const dataType = typeof personData[0][columnName];
+
+        sortDirection = !sortDirection;
+
+        switch(dataType) {
+            case 'number':
+            sortNumberColumn(sortDirection, columnName);
+            break;
+        }
+
+        loadTableData(personData);
+    }
+
+    function sortNumberColumn(sort, columnName) {
+        personData = personData.sort((p1, p2) => {
+            return sort ? p1[columnName] - p2[columnName] : p2[columnName] - p1[columnName]
+        });
+    }
+
+</script>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th onclick="sortColumn('age')">Age</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableData">
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
