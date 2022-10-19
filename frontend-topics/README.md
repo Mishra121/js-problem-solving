@@ -103,3 +103,45 @@
       }
       console.log(sum) // 10
     ```
+
+3. ### Closure ..?
+
+    closures (also lexical closures or function closures) are techniques for implementing lexically scoped name binding in languages with first-class functions
+
+    In other words, closure is created when a child function keep the environment of the parent scope even after the parent function has already executed
+
+    ```js
+      function foo()
+      {
+        var b = 1;
+        function inner() {
+          return b;
+        }
+        return inner;
+      }
+
+      var get_func_inner = foo();
+      console.log(get_func_inner()); // 1
+      console.log(get_func_inner()); // 1
+    ```
+
+    In above example We can access the variable b which is defined in function foo() through function inner() as the later preserves the scope chain of enclosing function at the time of execution of enclosing function i.e. the inner function knows the value of b through it’s scope chain.
+
+    ```js
+      function foo(outer_arg) {
+        function inner(inner_arg) {
+          return outer_arg + inner_arg;
+        }
+        return inner;
+      }
+      var get_func_inner = foo(5);
+
+      console.log(get_func_inner(4)); // 9
+      console.log(get_func_inner(3)); // 8
+    ```
+
+4. ### script async & defer
+
+   mentioned link can be use for the following topic
+
+    >Link: https://javascript.info/script-async-defer
