@@ -1,3 +1,7 @@
+function log (showVar) {
+    console.log(showVar);
+}
+
 let arr = [1,2,3,4,5];
 
 // forEach Polyfill implementation
@@ -87,3 +91,82 @@ let sumParam = {
 
 sum = sum.pBind(sumParam);
 sum() // this is sumParam, 33
+
+
+// sort() polyfill
+Array.prototype.mySort = function(compareFn) {
+    log("Inside our Array.sort implementation :)");
+
+    return mergeSort(this);
+
+    // Split the array into halves and merge them recursively
+    function mergeSort(arr) {
+        if(arr.length === 1) {
+            return arr;
+        }
+
+        const middle = Math.floor(arr.length / 2);
+        const left = arr.slice(0, middle);
+        const right = arr.slice(middle);
+
+        return merge(
+            mergeSort(left),
+            mergeSort(right)
+        )
+    }
+
+    // compare the arrays item by item and return the concatenated result
+    function merge(left, right) {
+        let result = [];
+        let indexLeft = 0;
+        let indexRight = 0;
+
+        while(indexLeft < left.length && indexRight < right.length) {
+            let _left = left[indexLeft];
+            let _right = right[indexRight];
+
+            let compare;
+            let compareFnDefault = (l, r) => l < r;
+            if(compareFn)
+                compare = composeCompareFn(compareFn(_left, _right))
+            else
+                compare = composeCompareFn(compareFnDefault(_left, _right))
+
+            if(compare) {
+                result.push(left[indexLeft]);
+                indexLeft++;
+            } else {
+                result.push(right[indexRight]);
+                indexRight++;
+            }
+        }
+
+        return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+    }
+
+    function composeCompareFn(compareResult) {
+        if(Math.sign(compareResult) == -1) return false
+        if(Math.sign(compareResult) == 1) return true
+        if(compareResult == 0) return false
+    }
+}
+
+const list = [2, 5, 1, 3, 7, 2, 3, 8, 6, 3]
+log(list.mySort());
+log(list.mySort((a, b) => a - b))
+
+const strSort = ["c", "a", "e"]
+log(strSort.mySort())
+
+// Inside our Array.sort implementation :)
+// [
+//   1, 2, 2, 3, 3,
+//   3, 5, 6, 7, 8
+// ]
+// Inside our Array.sort implementation :)
+// [
+//   8, 7, 6, 5, 3,
+//   3, 3, 2, 2, 1
+// ]
+// Inside our Array.sort implementation :)
+// [ 'a', 'c', 'e' ]
