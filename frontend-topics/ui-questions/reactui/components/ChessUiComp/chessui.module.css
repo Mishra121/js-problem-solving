@@ -1,0 +1,52 @@
+.chessapp {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    background-color: #202020;
+}
+
+.chessui-container {
+    color: red;
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-template-rows: repeat(8, 100px);
+    background-color: blue;
+    width: 800px;
+    height: 800px;
+}
+
+.tile {
+    display: grid;
+    place-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+
+.tile img {
+    width: 70px;
+}
+
+.tile__green {
+    background-color: #779556;
+}
+
+.tile__white {
+    background-color: #ebecd0;
+}
+
+.tile__piece {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+}
+
+.tile__piece:hover {
+    cursor: grab;
+}
+
+.tile__piece:active {
+    cursor: grabbing;
+}
