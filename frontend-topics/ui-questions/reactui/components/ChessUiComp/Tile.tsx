@@ -21,22 +21,26 @@ export default function Tile({image, number, onDragPiece, x, y}: Props) {
     }
 
     if(number % 2 === 0) 
-        return <div className={`${styles.tile} ${styles.tile__green}`}>
+        return <div className={`${styles.tile} ${styles.tile__green}`} id={`x:${x}y:${y}`} >
                     {image && <div draggable 
                                     onDragStart={(e) => onDragPiece(e, image, x, y)}
                                     onDragEnd={handlePieceDragEnd}
                                     style={{backgroundImage: `url(${image})`}} 
-                                    className={styles.tile__piece}>
+                                    className={styles.tile__piece}   
+                                >
                             </div>
                     }
+                    {`x:${x}y:${y}`}
                 </div>
-    return <div className={`${styles.tile} ${styles.tile__white}`}>
+    return <div className={`${styles.tile} ${styles.tile__white}`} id={`x:${x}y:${y}`}>
                 {image && <div draggable 
-                            onDragStart={(e) => onDragPiece(e, image, x, y)}
-                            onDragEnd={handlePieceDragEnd}
-                            style={{backgroundImage: `url(${image})`}} 
-                            className={styles.tile__piece}>
+                                onDragStart={(e) => onDragPiece(e, image, x, y)}
+                                onDragEnd={handlePieceDragEnd}
+                                style={{backgroundImage: `url(${image})`}} 
+                                className={styles.tile__piece}
+                            >
                         </div>
                 }
+                {`x:${x}y:${y}`}
             </div>
 }

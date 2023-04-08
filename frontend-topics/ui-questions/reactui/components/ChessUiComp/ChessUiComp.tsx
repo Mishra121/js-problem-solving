@@ -8,7 +8,7 @@ import styles from './chessui.module.css'
 const verticalAxis = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
-interface Piece {
+export interface Piece {
     image: string;
     x: number;
     y: number;
@@ -56,7 +56,7 @@ export default function ChessUiComp() {
     }
 
     const handleOnDropPiece = (e: React.DragEvent) => {
-
+        const currentPiecesState = pieces;
         const chessBoardCurr = chessBoardRef.current;
         if(chessBoardCurr) {
             const dropX = Math.floor((e.clientX - chessBoardCurr?.offsetLeft) / 100);
@@ -71,7 +71,9 @@ export default function ChessUiComp() {
             console.log({dropX, dropY, initial_X, initial_Y, pieceType});
 
             // Todo: Validation check for some basic moves
-            const validMove = moveVaildator.isValidMove(dropX, dropY, initial_X, initial_Y, pieceType);
+            const validMove = moveVaildator.isValidMove(dropX, dropY, initial_X, initial_Y, pieceType, currentPiecesState);
+
+            console.log({validMove})
 
             if(!validMove) {
                 alert('Not a Valid Move, Try again...');
