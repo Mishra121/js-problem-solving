@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+}
+
+.ttt_box {
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    /* font-weight: 100; */
+}
+
+.ttt_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
