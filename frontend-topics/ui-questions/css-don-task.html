@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css dom task</title>
+    <style>
+        .container {
+            /* margin: 0 auto;
+            margin-top: 20px; */
+        }
+        
+        .q1tasks p:nth-child(odd) {
+            color: red;
+        }
+
+        .q1tasks p:nth-child(even) {
+            color: aqua;
+        }
+
+        .q2tasks p:last-child() {
+            color: red;
+        }
+
+        /* p:nth-child(3n+0) {
+  background: red; <--- multiple of 3 index elements
+} */
+
+        /* last-child seems to not working properly in firefox */
+        .q2tasks p:-moz-last-node {
+            color: red;
+        }
+
+        .question3 {
+            max-width: 997px;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: blueviolet;
+            border: 1px solid black;
+            margin-right: 12px;
+            margin-bottom: 12px;
+            /* text-align: center; */
+            color: whitesmoke;
+            font-size: x-large;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h2>YO LETS START...</h2>
+
+
+            <div class="question1">
+                <h3>Q1 Color Red all the odd number p tags</h3>
+                <div class="q1tasks">
+                    <p>Task1</p>
+                    <p>Task2</p>
+                    <p>Task3</p>
+                    <p>Task4</p>
+                </div>
+            </div>
+
+            <div class="question2">
+                <h3>Q2 Color Red the last p tag</h3>
+                <div class="q2tasks">
+                    <p>Task1</p>
+                    <p>Task2</p>
+                    <p>Task3</p>
+                    <p>Task4</p>
+                </div>
+            </div>
+
+            <div class="question3">
+                <h3>Q3 Flex wrap elments and make them responsive</h3>
+                <div class="box-wrapper">
+                    <div class="box">1</div>
+                    <div class="box">2</div>
+                    <div class="box">3</div>
+                    <div class="box">4</div>
+                    <div class="box">5</div>
+                    <div class="box">6</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <script>
+        let container = document.getElementsByClassName('container');
+
+        myLog(container);
+
+
+        function myLog(log_variable) {
+            console.log(log_variable);
+        }
+    </script> -->
+</body>
+</html>

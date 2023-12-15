@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css dom task</title>
+    <style>
+
+        section {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            /* font-size: 16px; */
+        }
+
+        input {
+            padding: 15px 32px;;
+        }
+
+        .container {
+            text-align: center;
+            width: 1000px;
+            height: 75vh;
+            background-color: black;
+            color: whitesmoke;
+            font-size: large;
+        }
+
+        .button-group {
+            margin-top: 30px;
+        }
+
+        .button-group #increment-btn {
+            margin-right: 15px;
+        }
+
+        .input-group {
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h2>Vanilla Counter</h2>
+
+            <hr />
+
+            <div>Counter Value: <span id="count-value">0</span></div>
+
+            <div class="button-group">
+                <button id="increment-btn">increment++</button>
+                <button id="decrement-btn">decrement--</button>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="reset-count-input" value=""/>
+                <button id="reset-count-btn">set count</button>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        let count = document.getElementById('count-value');
+        let incrementBtn = document.getElementById('increment-btn');
+        let decrementBtn = document.getElementById('decrement-btn');
+        let resetInput = document.getElementById('reset-count-input');
+        let setCountBtn = document.getElementById('reset-count-btn');
+
+        window.onload = () => {
+            resetInput.value = '';
+        }
+
+        
+        function checkStrDigit(str) {
+            return /^\d+$/.test(str);
+        }  
+
+
+        incrementBtn.addEventListener('click', () => {
+            const curr_count = Number(count.innerText);
+            // if(curr_count)
+            count.innerText = curr_count + 1;
+        })
+
+        decrementBtn.addEventListener('click', () => {
+            const curr_count = Number(count.innerText);
+            if(curr_count === 0) {
+                return
+            }
+            count.innerText = curr_count - 1;
+        })
+
+        setCountBtn.addEventListener('click', () => {
+            myLog({val: resetInput.value, isNumber: checkStrDigit(resetInput.value)});
+            const isNumber = checkStrDigit(resetInput.value);
+
+            if(!isNumber) {
+                alert('only numbers allowed');
+                resetInput.value = '';
+                return;
+            }
+
+            count.innerText = resetInput.value;
+            resetInput.value = '';
+        })
+
+        function myLog(log_variable) {
+            console.log(log_variable);
+        }
+    </script>
+</body>
+</html>
